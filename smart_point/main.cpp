@@ -3,12 +3,16 @@
 #define CRTDBG_MAP_ALLOC  
 #include <stdlib.h>  
 #include <crtdbg.h>
+#include <iostream>
 
 void test()
 {
     int* temp = new int{ 5 };
     //delete temp;
     rstd::smart_ptr<int> num{ temp };
+
+    if (num)
+        std::cout << *temp << std::endl;
 }
 
 int main()
