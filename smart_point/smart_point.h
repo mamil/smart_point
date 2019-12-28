@@ -12,9 +12,11 @@ namespace rstd
             delete ptr_;
         }
         T* get() const { return ptr_; }
+
         T& operator*() const { return *ptr_; }
         T* operator->() const { return ptr_; }
         operator bool() const { return ptr_; }
+
         smart_ptr(smart_ptr& other)
         {
             ptr_ = other.release();
