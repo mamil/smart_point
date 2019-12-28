@@ -2,14 +2,44 @@
 #include <utility>
 namespace rstd
 {
+    class shared_count
+    {
+    public:
+        shared_count() :count_(1) {}
+        void add_count()
+        {
+            ++count_;
+        }
+        long reduce_count()
+        {
+            return --count_;
+        }
+        long get_count()
+        {
+            return count_;
+        }
+    private:
+        long count_;
+    };
+
     template <typename T>
     class smart_ptr {
     public:
         explicit smart_ptr(T* ptr = nullptr)
-            : ptr_(ptr) {}
+            : ptr_(ptr)
+        {
+            if (ptr_)
+            {
+                shared_count_ = new shared_count();
+            }
+        }
         ~smart_ptr()
         {
-            delete ptr_;
+            if (ptr_ and !shared_count_->reduce_count())
+            {
+                delete shared_count_;
+                delete ptr_;
+            }
         }
         T* get() const { return ptr_; }
 
@@ -40,5 +70,6 @@ namespace rstd
         }
     private:
         T* ptr_;
+        shared_count* shared_count_;
     };
 }
