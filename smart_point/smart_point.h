@@ -17,7 +17,7 @@ namespace rstd
         T* operator->() const { return ptr_; }
         operator bool() const { return ptr_; }
 
-        smart_ptr(smart_ptr& other)
+        smart_ptr(smart_ptr&& other)
         {
             ptr_ = other.release();
         }
@@ -27,9 +27,9 @@ namespace rstd
             ptr_ = nullptr;
             return ptr;
         }
-        smart_ptr& operator=(smart_ptr& rhs)
+        smart_ptr& operator=(smart_ptr rhs)
         {
-            smart_ptr(rhs).swap(*this);
+            rhs.swap(*this);
             return *this;
         }
         void swap(smart_ptr& rhs)

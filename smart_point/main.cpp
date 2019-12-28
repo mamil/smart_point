@@ -15,7 +15,7 @@ void test()
         std::cout << *num << std::endl;
 
     //**** copy
-    rstd::smart_ptr<int> num1(num);
+    rstd::smart_ptr<int> num1(std::move(num));
     if (num)
     {
         std::cout << *num << std::endl;
@@ -33,7 +33,8 @@ void test()
         std::cout << "num1 is empty" << std::endl;
     }
 
-    num = num1;
+    // num = num1; // can't do this anymore
+    num = std::move(num1);
     if (num)
     {
         std::cout << *num << std::endl;
