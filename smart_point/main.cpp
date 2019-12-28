@@ -12,7 +12,7 @@ void test()
     rstd::smart_ptr<int> num{ temp };
 
     if (num)
-        std::cout << *temp << std::endl;
+        std::cout << *num << std::endl;
 }
 
 int main()
