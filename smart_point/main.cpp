@@ -14,7 +14,26 @@ void test()
     if (num)
         std::cout << *num << std::endl;
 
+    //**** copy
     rstd::smart_ptr<int> num1(num);
+    if (num)
+    {
+        std::cout << *num << std::endl;
+    }
+    else
+    {
+        std::cout << "num is empty" << std::endl;
+    }
+    if (num1)
+    {
+        std::cout << *num1 << std::endl;
+    }
+    else
+    {
+        std::cout << "num1 is empty" << std::endl;
+    }
+
+    num = num1;
     if (num)
     {
         std::cout << *num << std::endl;
