@@ -17,7 +17,8 @@ namespace rstd
         T* operator->() const { return ptr_; }
         operator bool() const { return ptr_; }
 
-        smart_ptr(smart_ptr&& other)
+        template <typename U>
+        smart_ptr(smart_ptr<U>&& other)
         {
             ptr_ = other.release();
         }
